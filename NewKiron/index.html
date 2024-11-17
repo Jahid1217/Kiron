@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Kiron Finance</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="cont">
+        <div class="form sign-in">
+            <h1>Kiron Finance</h1><br><br>
+            <h2>Welcome</h2>
+            <form method="POST">
+                <label>
+                    <span>Email</span>
+                    <input type="email" name="login_username" required />
+                </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password" name="login_password" required />
+                </label>
+                <p class="forgot-pass">
+                    <a href="your-password-reset-url" class="forgot-pass">Forgot password?</a>
+                </p>
+                <button type="button" class="submit" name="log_submit">Sign In</button>
+            </form>
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+                    <h3>Don't have an account? Please Sign up!</h3>
+                </div>
+                <div class="img__text m--in">
+                    <h3>If you already have an account, just sign in.</h3>
+                </div>
+                <div class="img__btn">
+                    <span class="m--up">Sign Up</span>
+                    <span class="m--in">Sign In</span>
+                </div>
+            </div>
+            <div class="form sign-up">
+                <h2>Create your Account</h2>
+                <form name="contact-form" method="POST" id="contact-form">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" name="sign-up_name" required />
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" name="sign-up_email" required />
+                    </label>
+                    <label>
+                        <span>Phone Number</span>
+                        <input type="text" name="sign-up_phoNom" required />
+                    </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" name="sign-up_password" required />
+                    </label>
+                    <label>
+                        <span>Confirm Password</span>
+                        <input type="password" name="sign-up_comPassword" required />
+                    </label>
+                    <button type="submit" class="submit" name="reg_submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+     <script src="script.js"></script>
+    <script>
+        // Toggle between Sign In and Sign Up forms
+        document.querySelector('.img__btn').addEventListener('click', function () {
+            document.querySelector('.cont').classList.toggle('s--signup');
+        });
+
+        // Handle form submission
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwR1VW1EZLdP-LPBARmZ4UnzVzcw_Yc0e2Ly8vdlPb7Usjkf_abnXKI2k45Zni0y1Nt/exec';
+        const form = document.getElementById('contact-form');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then((response) => {
+                    alert('Thank you! Your form has been submitted successfully.');
+                    window.location.reload();
+                })
+                .catch((error) => {
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>
+</body>
+</html>
